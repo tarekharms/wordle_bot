@@ -9,6 +9,8 @@ if(sys.argv[1] == 'en'):
     os.system('aspell -l en dump master | aspell -l en expand > words')
 elif(sys.argv[1] == 'de'):
     os.system('aspell -l de dump master | aspell -l de expand > words')
+elif(sys.argv[1] == 'nl'):
+    os.system('aspell -l nl dump master | aspell -l nl expand > words')
 else:
     print("Keine Sprache angegeben")
     exit()

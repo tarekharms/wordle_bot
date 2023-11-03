@@ -28,7 +28,7 @@ def getEntropy(word, possibleWords):
                         # entropy += len(matches) / len(possibleWords) * len(matches)
                         p = len(matches) / len(possibleWords)
                         if p != 0:
-                            entropy += p * math.log(1/p, 2)    
+                            entropy += p * math.log(1/p, 2)                    
 
     return entropy
     
@@ -46,6 +46,12 @@ def getMatchesWordMuster(word, muster, possibleWords):
         list(string.ascii_lowercase),
         list(string.ascii_lowercase)
     ]
+
+    # umlaute = ['ö', 'ä', 'ü']
+
+    # for umlaut in umlaute:
+    #     for wordMatch in possibleWordmatch:
+    #         wordMatch.append(umlaut)
 
     richtigeBuchstaben = [False, False, False, False, False]
     vorhandeneBuchstaben = []
@@ -174,16 +180,21 @@ possibleWordmatch = [
     list(string.ascii_lowercase)
 ]
 
+# umlaute = ['ö', 'ä', 'ü']
+
+# for umlaut in umlaute:
+#     for wordMatch in possibleWordmatch:
+#         wordMatch.append(umlaut)
+
 richtigeBuchstaben = [False, False, False, False, False]
 vorhandeneBuchstaben = []
-# woerterBlacklist = ['altre', 'lasre'] # Deutsch
+woerterBlacklist = ['altre', 'lasre', 'knaur'] # Deutsch
 # woerterBlacklist = ['aires', 'aries'] # Englisch
-woerterBlacklist = [] # Englisch
 
 
 firstRound = True
 
-woerterbuch = open("wordleWords_en", 'r')
+woerterbuch = open("wordleWords_nl", 'r')
 possibleWords = getPossibleWords(woerterbuch, possibleWordmatch, vorhandeneBuchstaben, woerterBlacklist)
 woerterbuch.close()
 
@@ -193,9 +204,9 @@ woerterbuch.close()
 while(True):    
 
     if(firstRound):
-        # zuRatendesWort = "raste" # ohne umlaute
-        # zuRatendesWort = "tarne" # mit umlaute
-        zuRatendesWort = "tares" # Englisch
+        # zuRatendesWort = "rates" # ohne umlaute 6.12 Bit
+        zuRatendesWort = "rates" # mit umlaute 6.03 Bit
+        # zuRatendesWort = "tares" # Englisch
         firstRound = False
     else:
         zuRatendesWort = getWortBesteEntropy(possibleWords)
